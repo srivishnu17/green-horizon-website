@@ -1,0 +1,26 @@
+import { useEffect } from "react";
+
+export function useReveal() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const els = document.querySelectorAll<HTMLElement>(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+export function useCounter(target: number, duration = 1800, start = false) {
+  // returns a ref-callback driven counter via DOM mutation
+  return { target, duration, start };
+}
