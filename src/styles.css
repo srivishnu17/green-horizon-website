@@ -208,5 +208,3 @@
 .reveal { opacity: 0; }
 .reveal.in { animation: reveal-up .8s cubic-bezier(.2,.7,.2,1) forwards; }
 .wa-pulse { animation: pulse-glow 2.4s ease-in-out infinite; }
-  }
-}
